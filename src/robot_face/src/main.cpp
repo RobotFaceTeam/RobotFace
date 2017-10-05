@@ -2,6 +2,7 @@
 #include <assimp/Importer.hpp>      // C++ importer interface
 #include <assimp/scene.h>           // Output data structure
 #include <assimp/postprocess.h>     // Post processing flags
+#include <iostream>
 
 bool DoTheImportThing( const std::string& pFile)
 {
@@ -20,11 +21,12 @@ bool DoTheImportThing( const std::string& pFile)
   {
     return false;
   }
- // DoTheSceneProcessing( scene);
+  //DoTheSceneProcessing(scene);
   return true;
 }
 
 int main() {
-	DoTheImportThing("res/pjanic.dae");
+	system("pwd");
+	std::cout << DoTheImportThing("res/pjanic.dae") << std::endl;
 	return 0;
 }
