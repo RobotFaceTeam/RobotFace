@@ -46,9 +46,9 @@ void doTiming() {
 	}
 
 	//non-normalized movement
-	axisRot[0] += axisVel[0] * .5;
-	axisRot[1] += axisVel[1] * .5;
-	axisRot[2] += axisVel[2] * .5;
+	//axisRot[0] += axisVel[0] * .5;
+	//axisRot[1] += axisVel[1] * .5;
+	//axisRot[2] += axisVel[2] * .5;
 
 	//finalize
 	glutPostRedisplay();
@@ -419,6 +419,16 @@ void key_spec_up_callback(int key, int, int) {
 	}
 }
 
+void passive_mouse_callback(int x, int y) {
+	axisRot[0] = (y / 384.0) - 1;
+	axisRot[1] = (x / 384.0) - 1;
+
+	axisRot[0] *= 10;
+	axisRot[1] *= 10;
+
+	axisRot[1] -= 90;
+}
+
 /*
  * ASSIMP STUFF
  */
@@ -453,6 +463,7 @@ int main(int argc, char** argv) {
 	glutSpecialFunc(key_spec_callback);
 	glutKeyboardUpFunc(key_up_callback);
 	glutSpecialUpFunc(key_spec_up_callback);
+	glutPassiveMotionFunc(passive_mouse_callback);
 
 	if (!load("res/pjanic.dae")) {
 		printf("could load the goddamn file\n");
